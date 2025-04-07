@@ -1,0 +1,22 @@
+{
+  "appId": "com.coya.mcp-client",
+  "productName": "Coya MCP Client",
+  "directories": {
+    "output": "release"
+  },
+  "files": [
+    "dist/**/*",
+    "package.json"
+  ],
+  "mac": {
+    "category": "public.app-category.developer-tools",
+    "target": ["dmg", "zip"]
+  },
+  "win": {
+    "target": ["nsis"]
+  },
+  "linux": {
+    "target": ["AppImage", "deb"],
+    "category": "Development"
+  }
+} 
