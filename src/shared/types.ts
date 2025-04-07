@@ -1,50 +1,29 @@
-// Server types
-export interface Server {
+// MCP Server types
+export interface McpServer {
   id: string;
   name: string;
   type: 'stdio' | 'http';
   path?: string;
   url?: string;
-  args?: string[];
   connected: boolean;
+  tools?: McpTool[];
+  resources?: McpResource[];
 }
 
-// Tool types
-export interface Tool {
+export interface McpTool {
   name: string;
   description: string;
-  parameters: any;
+  inputSchema: any;
 }
 
-// Chat message types
-export type MessageRole = 'user' | 'assistant' | 'system' | 'tool';
-
-export interface Message {
-  id: string;
-  role: MessageRole;
-  content: string;
-  toolCalls?: ToolCall[];
-  toolCallId?: string;
+export interface McpResource {
+  name: string;
+  uri: string;
+  description?: string;
 }
 
-export interface ToolCall {
-  id: string;
-  type: 'function';
-  function: {
-    name: string;
-    arguments: string;
-  };
-}
-
-// Settings type
-export interface Settings {
-  openrouterApiKey: string;
-  defaultModel: string;
-  theme: 'light' | 'dark' | 'system';
-}
-
-// Model types
-export interface Model {
+// OpenRouter.ai types
+export interface OpenRouterModel {
   id: string;
   name: string;
   context_length: number;
@@ -56,4 +35,52 @@ export interface Model {
     name: string;
     label: string;
   };
-} 
+}
+
+export interface ChatMessage {
+  role: 'user' | 'assistant' | 'system' | 'tool';
+  content: string;
+  name?: string;
+  tool_call_id?: string;
+  tool_calls?: ToolCall[];
+}
+
+export interface ToolCall {
+  id: string;
+  type: 'function';
+  function: {
+    name: string;
+    arguments: string;
+  };
+}
+
+export interface ChatCompletionResponse {
+  id: string;
+  choices: {
+    message: {
+      role: string;
+      content: string;
+      tool_calls?: ToolCall[];
+    };
+    finish_reason: string;
+  }[];
+  usage: {
+    prompt_tokens: number;
+    completion_tokens: number;
+    total_tokens: number;
+  };
+}
+
+// UI types
+export interface ChatConversation {
+  id: string;
+  title: string;
+  messages: ChatMessage[];
+  serverId?: string;
+}
+
+export interface Settings {
+  openrouterApiKey: string;
+  defaultModel: string;
+  theme: 'light' | 'dark' | 'system';
+}

@@ -1,7 +1,7 @@
 import { ipcMain } from 'electron';
-import { Client } from '@modelcontextprotocol/sdk/client';
-import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio';
-import { WebSocketClientTransport } from '@modelcontextprotocol/sdk/client/websocket';
+import { Client } from '@modelcontextprotocol/sdk/client/index.js';
+import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
+import { WebSocketClientTransport } from '@modelcontextprotocol/sdk/client/websocket.js';
 import * as path from 'path';
 import * as fs from 'fs';
 import axios from 'axios';
