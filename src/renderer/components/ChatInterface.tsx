@@ -237,12 +237,12 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
         <div className="flex items-start">
           <div className="flex-shrink-0 mr-2">
             {message.role === 'user' && (
-              <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
+              <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white">
                 U
               </div>
             )}
             {message.role === 'assistant' && (
-              <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white">
+              <div className="w-8 h-8 rounded-full bg-green-700 flex items-center justify-center text-white">
                 A
               </div>
             )}
@@ -252,7 +252,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
               </div>
             )}
             {message.role === 'tool' && (
-              <div className="w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center text-white">
+              <div className="w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center text-black">
                 T
               </div>
             )}
@@ -274,7 +274,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
             </div>
             {message.tool_calls && (
               <div className="mt-2 border-t border-gray-200 dark:border-gray-700 pt-2">
-                <div className="text-xs font-medium text-gray-600 dark:text-gray-300 mb-1">
+                <div className="text-xs font-medium text-gray-800 dark:text-gray-300 mb-1">
                   Tool Calls:
                 </div>
                 {message.tool_calls.map((toolCall: any) => (
@@ -287,7 +287,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
                       {toolCall.function.arguments}
                     </pre>
                     {pendingToolCalls.some(tc => tc.id === toolCall.id) && (
-                      <div className="flex items-center mt-1 text-xs text-gray-500">
+                      <div className="flex items-center mt-1 text-xs text-gray-700">
                         <span className="spinner mr-1"></span>
                         <span>Executing...</span>
                       </div>
@@ -310,7 +310,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
           <div className="h-full flex items-center justify-center">
             <div className="text-center">
               <h2 className="text-xl font-semibold mb-2">Start a new conversation</h2>
-              <p className="text-gray-500 dark:text-gray-400 mb-4">
+              <p className="text-gray-700 dark:text-gray-400 mb-4">
                 {server ? (
                   <>
                     You are connected to <strong>{server.name}</strong> with{' '}
@@ -322,7 +322,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
                   </>
                 )}
               </p>
-              <p className="text-gray-500 dark:text-gray-400">
+              <p className="text-gray-700 dark:text-gray-400">
                 Type a message below to get started.
               </p>
             </div>
@@ -349,7 +349,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
           />
           <button
             onClick={handleSendMessage}
-            className="ml-2 p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50"
+            className="ml-2 p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
             disabled={!message.trim() || isLoading}
           >
             {isLoading ? (

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { ChatInterface } from './components/ChatInterface.js';
 import { ServerManager } from './components/ServerManager.js';
 import { ModelSelector } from './components/ModelSelector.js';
@@ -82,6 +82,31 @@ const App: React.FC = () => {
 
     fetchModels();
   }, [settings.openrouterApiKey]);
+
+  // Apply theme based on settings
+  const applyTheme = useCallback((theme: 'light' | 'dark' | 'system') => {
+    const root = window.document.documentElement;
+    const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    
+    root.classList.toggle('dark', isDark);
+  }, []);
+
+  useEffect(() => {
+    applyTheme(settings.theme);
+
+    // Listener for system theme changes
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = () => {
+      if (settings.theme === 'system') {
+        applyTheme('system');
+      }
+    };
+
+    mediaQuery.addEventListener('change', handleChange);
+    
+    // Cleanup listener on component unmount or theme change
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, [settings.theme, applyTheme]);
 
   // Handle adding a new server
   const handleAddServer = (server: Omit<McpServer, 'id' | 'connected' | 'tools' | 'resources'>) => {
@@ -261,10 +286,10 @@ const App: React.FC = () => {
         {/* Conversation list */}
         <div className="flex-1 overflow-y-auto p-4 border-t border-gray-200 dark:border-gray-700">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-lg font-semibold">Conversations</h2>
-            <button 
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Conversations</h2>
+            <button
               onClick={() => handleNewConversation(activeServer || undefined)}
-              className="p-1 rounded-full bg-blue-500 text-white"
+              className="p-1 rounded-full bg-blue-600 text-white hover:bg-blue-700"
               title="New Conversation"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -311,9 +336,9 @@ const App: React.FC = () => {
         
         {/* Settings button */}
         <div className="p-4 border-t border-gray-200 dark:border-gray-700">
-          <button 
+          <button
             onClick={() => setIsSettingsOpen(true)}
-            className="w-full flex items-center justify-center gap-2 p-2 rounded bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
+            className="w-full flex items-center justify-center gap-2 p-2 rounded bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
@@ -351,9 +376,9 @@ const App: React.FC = () => {
             <div className="h-full flex items-center justify-center">
               <div className="text-center">
                 <h2 className="text-xl font-semibold mb-4">No conversation selected</h2>
-                <button 
+                <button
                   onClick={() => handleNewConversation(activeServer || undefined)}
-                  className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                  className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
                 >
                   Start a new conversation
                 </button>

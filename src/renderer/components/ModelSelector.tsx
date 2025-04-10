@@ -58,7 +58,7 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
           ) : (
             <>
               <span className="font-medium">{currentModel.name}</span>
-              <span className="ml-2 text-sm text-gray-500 dark:text-gray-400">
+              <span className="ml-2 text-sm text-gray-700 dark:text-gray-400">
                 ({currentModel.provider.label})
               </span>
             </>
@@ -93,7 +93,7 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
           <div className="max-h-60 overflow-y-auto">
             {Object.entries(groupedModels).map(([provider, providerModels]) => (
               <div key={provider} className="py-1">
-                <div className="px-3 py-1 text-xs font-semibold text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700">
+                <div className="px-3 py-1 text-xs font-semibold text-gray-700 dark:text-gray-400 bg-gray-100 dark:bg-gray-700">
                   {provider.toUpperCase()}
                 </div>
                 <ul>
@@ -110,7 +110,7 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
                         }}
                       >
                         <div className="font-medium">{model.name}</div>
-                        <div className="text-xs text-gray-500 dark:text-gray-400 flex justify-between">
+                        <div className="text-xs text-gray-700 dark:text-gray-400 flex justify-between">
                           <span>Context: {model.context_length} tokens</span>
                           <span>
                             ${model.pricing.prompt.toFixed(4)} / ${model.pricing.completion.toFixed(4)}
@@ -123,7 +123,7 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
               </div>
             ))}
             {filteredModels.length === 0 && (
-              <div className="px-3 py-2 text-sm text-gray-500 dark:text-gray-400">
+              <div className="px-3 py-2 text-sm text-gray-700 dark:text-gray-400">
                 No models found matching "{searchQuery}"
               </div>
             )}

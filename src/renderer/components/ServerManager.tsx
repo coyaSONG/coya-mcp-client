@@ -51,10 +51,10 @@ export const ServerManager: React.FC<ServerManagerProps> = ({
   return (
     <div className="p-4">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-lg font-semibold">MCP Servers</h2>
-        <button 
+        <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">MCP Servers</h2>
+        <button
           onClick={() => setIsAddingServer(!isAddingServer)}
-          className="p-1 rounded-full bg-blue-500 text-white"
+          className="p-1 rounded-full bg-blue-600 text-white hover:bg-blue-700"
           title={isAddingServer ? "Cancel" : "Add Server"}
         >
           {isAddingServer ? (
@@ -72,7 +72,7 @@ export const ServerManager: React.FC<ServerManagerProps> = ({
       {isAddingServer && (
         <form onSubmit={handleSubmit} className="mb-4 p-4 bg-gray-100 dark:bg-gray-700 rounded">
           <div className="mb-3">
-            <label className="block text-sm font-medium mb-1">Server Name</label>
+            <label className="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Server Name</label>
             <input
               type="text"
               value={serverName}
@@ -84,9 +84,9 @@ export const ServerManager: React.FC<ServerManagerProps> = ({
           </div>
           
           <div className="mb-3">
-            <label className="block text-sm font-medium mb-1">Server Type</label>
+            <label className="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Server Type</label>
             <div className="flex gap-4">
-              <label className="flex items-center">
+              <label className="flex items-center text-gray-700 dark:text-gray-300">
                 <input
                   type="radio"
                   value="stdio"
@@ -94,9 +94,9 @@ export const ServerManager: React.FC<ServerManagerProps> = ({
                   onChange={() => setServerType('stdio')}
                   className="mr-1"
                 />
-                <span>Local (stdio)</span>
+                <span className="text-sm">Local (stdio)</span>
               </label>
-              <label className="flex items-center">
+              <label className="flex items-center text-gray-700 dark:text-gray-300">
                 <input
                   type="radio"
                   value="http"
@@ -104,14 +104,14 @@ export const ServerManager: React.FC<ServerManagerProps> = ({
                   onChange={() => setServerType('http')}
                   className="mr-1"
                 />
-                <span>Remote (HTTP)</span>
+                <span className="text-sm">Remote (HTTP)</span>
               </label>
             </div>
           </div>
           
           {serverType === 'stdio' ? (
             <div className="mb-3">
-              <label className="block text-sm font-medium mb-1">Server Path</label>
+              <label className="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Server Path</label>
               <input
                 type="text"
                 value={serverPath}
@@ -137,7 +137,7 @@ export const ServerManager: React.FC<ServerManagerProps> = ({
           
           <button
             type="submit"
-            className="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            className="w-full p-2 bg-blue-600 text-white rounded hover:bg-blue-700"
             disabled={isLoading}
           >
             {isLoading ? (
@@ -211,7 +211,7 @@ export const ServerManager: React.FC<ServerManagerProps> = ({
             </div>
             {server.connected && server.tools && server.tools.length > 0 && (
               <div className="mt-2">
-                <p className="text-xs font-medium text-gray-600 dark:text-gray-300">Available Tools:</p>
+                <p className="text-xs font-medium text-gray-800 dark:text-gray-300">Available Tools:</p>
                 <div className="flex flex-wrap gap-1 mt-1">
                   {server.tools.map(tool => (
                     <span 
@@ -228,7 +228,7 @@ export const ServerManager: React.FC<ServerManagerProps> = ({
           </li>
         ))}
         {servers.length === 0 && !isAddingServer && (
-          <li className="text-center p-4 text-gray-500 dark:text-gray-400">
+          <li className="text-center p-4 text-gray-700 dark:text-gray-400">
             No servers added yet. Click the + button to add a server.
           </li>
         )}
