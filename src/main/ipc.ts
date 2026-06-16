@@ -42,11 +42,7 @@ export function setupIpcHandlers() {
           version: '1.0.0',
         },
         {
-          capabilities: {
-            prompts: {},
-            resources: {},
-            tools: {},
-          },
+          capabilities: {},
         }
       );
 
