@@ -44,7 +44,7 @@
     "picomatch": "2.3.2",
     "postcss-import": "^16.1.1",
     "ts-node": "^10.9.2",
-    "vite": "^8.0.16",
+    "vite": "^8.1.4",
     "wait-on": "^8.0.3"
   }
 }
