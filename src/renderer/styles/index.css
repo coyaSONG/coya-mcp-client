@@ -1,6 +1,5 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import "tailwindcss";
+@config "../../../tailwind.config.js";
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -16,8 +15,8 @@
 }
 
 body {
-  /* Tailwind의 기본값을 명시적으로 설정하여 가독성 문제 해결 시도 */
-  @apply text-gray-900 bg-white; 
+  color: rgb(17 24 39);
+  background-color: rgb(255 255 255);
   margin: 0;
   display: flex;
   min-width: 320px;
@@ -25,8 +24,8 @@ body {
 }
 
 html.dark body {
-   /* Tailwind의 기본값을 명시적으로 설정하여 가독성 문제 해결 시도 */
-  @apply text-gray-100 bg-gray-900;
+  color: rgb(243 244 246);
+  background-color: rgb(17 24 39);
 }
 
 #root {
