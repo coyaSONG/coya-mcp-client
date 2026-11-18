@@ -35,7 +35,7 @@
     "typescript": "^5.8.3"
   },
   "devDependencies": {
-    "@types/node": "^22.13.10",
+    "@types/node": "^26.1.1",
     "@vitejs/plugin-react": "^6.0.2",
     "concurrently": "^9.1.2",
     "cross-env": "^7.0.3",
