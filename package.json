@@ -27,7 +27,7 @@
     "dotenv": "^16.4.7",
     "electron": "^42.4.0",
     "electron-builder": "^26.15.3",
-    "postcss": "8.5.15",
+    "postcss": "8.5.25",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-markdown": "^10.1.0",
